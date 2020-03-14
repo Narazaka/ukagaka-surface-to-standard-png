@@ -5,6 +5,9 @@
   "main": "convertSurfaceToStandardPng.js",
   "types": "convertSurfaceToStandardPng.d.ts",
   "bin": "ukagaka-surface-to-standard-png.js",
+  "files": [
+    "convertSurfaceToStandardPng.d.ts"
+  ],
   "scripts": {
     "prepublishOnly": "npm test",
     "test": "npm-run-all lint mocha",
