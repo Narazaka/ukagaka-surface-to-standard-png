@@ -1,6 +1,6 @@
 {
   "name": "ukagaka-surface-to-standard-png",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Ukagaka surface to standard RGBA png",
   "main": "convertSurfaceToStandardPng.js",
   "types": "convertSurfaceToStandardPng.d.ts",
