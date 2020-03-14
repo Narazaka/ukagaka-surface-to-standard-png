@@ -1,6 +1,7 @@
 // @ts-check
 const Jimp = require("jimp");
 const fs = require("fs");
+const path = require("path");
 
 /**
  *
@@ -66,8 +67,21 @@ async function convertSurfaceToStandardPng(shellPath, destinationPath) {
     await (await convertSurfaceToStandardPngData(shellPath)).writeAsync(destinationPath);
 }
 
+/**
+ * 
+ * @param {string} shellDir 
+ * @param {string} destinationDir 
+ */
+function convertSurfacesToStandardPngs(shellDir, destinationDir) {
+    const filenames = fs.readdirSync(shellDir).filter(f => path.extname(f) === ".png");
+    return Promise.all(filenames.map(filename => 
+        convertSurfaceToStandardPng(path.join(shellDir, filename), path.join(destinationDir, filename))
+    ));
+}
+
 module.exports = {
     convertSurfaceDataToStandardPngData,
     convertSurfaceToStandardPngData,
     convertSurfaceToStandardPng,
+    convertSurfacesToStandardPngs,
 };

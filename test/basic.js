@@ -6,14 +6,12 @@ const assert = require("assert");
 const fs = require("fs");
 const path = require("path");
 const Jimp = require("jimp");
-const { convertSurfaceToStandardPng } = require("../convertSurfaceToStandardPng");
+const { convertSurfacesToStandardPngs } = require("../convertSurfaceToStandardPng");
 
 const targetsDir = path.join(__dirname, "/assets/targets");
 const resultsDir = path.join(__dirname, "/assets/results");
 const tmpDir = path.join(__dirname, "/assets/tmp");
 
-/** @param {string} filename  */
-const targetPathOf = filename=> path.join(targetsDir, filename);
 /** @param {string} filename  */
 const resultPathOf = filename=> path.join(resultsDir, filename);
 /** @param {string} filename  */
@@ -23,13 +21,7 @@ const filenames = fs.readdirSync(targetsDir).filter(f => /\.png$/.test(f));
 
 describe("convertSurfaceToStandardPng", () => {
     before(async () => {
-        // eslint-disable-next-line no-restricted-syntax
-        for (const filename of filenames) {
-            const targetPath = targetPathOf(filename);
-            const tmpPath = tmpPathOf(filename);
-            // eslint-disable-next-line no-await-in-loop
-            await convertSurfaceToStandardPng(targetPath, tmpPath);
-        }
+        await convertSurfacesToStandardPngs(targetsDir, tmpDir);
     });
     // eslint-disable-next-line no-restricted-syntax
     for (const filename of filenames) {
@@ -53,4 +45,10 @@ describe("convertSurfaceToStandardPng", () => {
             });
         });
     }
+    after(() => {
+        // eslint-disable-next-line no-restricted-syntax
+        for (const filename of filenames) {
+            fs.unlinkSync(tmpPathOf(filename));
+        }
+    });
 });
