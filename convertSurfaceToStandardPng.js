@@ -10,11 +10,7 @@ const path = require("path");
  * @param {{r: number; g: number; b: number, a: number}} color
  */
 function isBitmapColorSame(data, index, color) {
-    return (
-        data[index] === color.r &&
-        data[index + 1] === color.g &&
-        data[index + 2] === color.b
-    );
+    return data[index] === color.r && data[index + 1] === color.g && data[index + 2] === color.b;
 }
 
 /**
@@ -68,15 +64,17 @@ async function convertSurfaceToStandardPng(shellPath, destinationPath) {
 }
 
 /**
- * 
- * @param {string} shellDir 
- * @param {string} destinationDir 
+ *
+ * @param {string} shellDir
+ * @param {string} destinationDir
  */
 function convertSurfacesToStandardPngs(shellDir, destinationDir) {
     const filenames = fs.readdirSync(shellDir).filter(f => path.extname(f) === ".png");
-    return Promise.all(filenames.map(filename => 
-        convertSurfaceToStandardPng(path.join(shellDir, filename), path.join(destinationDir, filename))
-    ));
+    return Promise.all(
+        filenames.map(filename =>
+            convertSurfaceToStandardPng(path.join(shellDir, filename), path.join(destinationDir, filename)),
+        ),
+    );
 }
 
 module.exports = {

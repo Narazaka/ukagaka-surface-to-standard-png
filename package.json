@@ -4,6 +4,7 @@
   "description": "Ukagaka surface to standard RGBA png",
   "main": "convertSurfaceToStandardPng.js",
   "types": "convertSurfaceToStandardPng.d.ts",
+  "bin": "ukagaka-surface-to-standard-png.js",
   "scripts": {
     "prepublishOnly": "npm test",
     "test": "npm-run-all lint mocha",

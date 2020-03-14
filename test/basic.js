@@ -13,9 +13,9 @@ const resultsDir = path.join(__dirname, "/assets/results");
 const tmpDir = path.join(__dirname, "/assets/tmp");
 
 /** @param {string} filename  */
-const resultPathOf = filename=> path.join(resultsDir, filename);
+const resultPathOf = filename => path.join(resultsDir, filename);
 /** @param {string} filename  */
-const tmpPathOf = filename=> path.join(tmpDir, filename);
+const tmpPathOf = filename => path.join(tmpDir, filename);
 
 const filenames = fs.readdirSync(targetsDir).filter(f => /\.png$/.test(f));
 
