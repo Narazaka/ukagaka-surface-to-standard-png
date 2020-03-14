@@ -2,11 +2,17 @@
   "name": "ukagaka-surface-to-standard-png",
   "version": "1.0.0",
   "description": "Ukagaka surface to standard RGBA png",
-  "main": "index.js",
+  "main": "convertSurfaceToStandardPng.js",
+  "types": "convertSurfaceToStandardPng.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["ukagaka"],
+  "keywords": [
+    "ukagaka"
+  ],
   "author": "narazaka",
-  "license": "Zlib"
+  "license": "Zlib",
+  "dependencies": {
+    "jimp": "^0.9.5"
+  }
 }
