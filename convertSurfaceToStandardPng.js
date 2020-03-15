@@ -15,6 +15,20 @@ function isBitmapColorSame(data, index, color) {
 
 /**
  *
+ * @param {Buffer} data
+ * @param {number} index
+ */
+function paintWhite(data, index) {
+    // eslint-disable-next-line no-param-reassign
+    data[index] = 255;
+    // eslint-disable-next-line no-param-reassign
+    data[index + 1] = 255;
+    // eslint-disable-next-line no-param-reassign
+    data[index + 2] = 255;
+}
+
+/**
+ *
  * @param {import("jimp")} shell
  * @param {import("jimp")} [pna]
  */
@@ -38,6 +52,7 @@ async function convertSurfaceDataToStandardPngData(shell, pna) {
         if (isBitmapColorSame(shellData, index, transparentTargetColor)) {
             shellData[index + 3] = 0;
         }
+        if (shellData[index + 3] === 0) paintWhite(shellData, index);
     });
 }
 
